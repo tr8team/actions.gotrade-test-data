@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/tr8team/actions.gotrade-test-data/compare/v1.0.1...v1.1.0) (2023-08-04)
+
+
+### Features
+
+* executable ([e495471](https://github.com/tr8team/actions.gotrade-test-data/commit/e495471de3c9f7df6281b9321eba9849769f9e7f))
+
 ## [1.0.1](https://github.com/tr8team/actions.gotrade-test-data/compare/v1.0.0...v1.0.1) (2023-08-04)
 
 
