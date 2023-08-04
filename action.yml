@@ -1,0 +1,72 @@
+name: Gotrade Test Data Action
+description: "Gotrade extract test data"
+inputs:
+  name:
+    required: true
+    description: "Name of the test type (Unit, Integration etc)"
+  cf_token:
+    required: true
+    description: "Cloudflare API Token"
+  cf_acc_id:
+    required: true
+    description: "Cloudflare Account ID"
+  cf_project_name:
+    required: true
+    description: "Cloudflare Pages' Project Name"
+  test_report_path:
+    required: true
+    description: "Path to test results folder"
+  coverage_report_path:
+    required: true
+    description: "Path to coverage results folder"
+  test_result_path:
+    required: true
+    description: "Path to test results summary metadata"
+  coverage_result_path:
+    required: true
+    description: "Path to coverage results summary metadata"
+runs:
+  using: "composite"
+  steps:
+    - name: Publish Test Result
+      id: test-report
+      run: ${{ github.action_path }}/scripts/ci/publish_cloudflare.sh
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cf_token }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ inputs.cf_acc_id }}
+        PROJECT_NAME: ${{ inputs.cf_project_name }}
+        DIRECTORY: ${{ inputs.test_report_path }}
+
+    - name: Publish Coverage Result
+      id: coverage-report
+      run: ${{ github.action_path }}/scripts/ci/publish_cloudflare.sh
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.cf_token }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ inputs.cf_acc_id }}
+        PROJECT_NAME: ${{ inputs.cf_project_name }}
+        DIRECTORY: ${{ inputs.coverage_report_path }}
+
+    - name: Test Result Extractor
+      id: test-report-extractor
+      uses: tr8team/test-sources@v1.1.0
+      with:
+        name: "${{ inputs.name }} Test Results"
+        url: "${{ steps.test-report.outputs.url }}"
+        type: "vitest-result"
+        path: ${{ inputs.test_result_path }}
+
+    - name: Test Coverage Extractor
+      id: coverage-report-extractor
+      uses: tr8team/test-sources@v1.1.0
+      with:
+        name: "${{ inputs.name }} Test Coverage"
+        url: "${{ steps.coverage-report.outputs.url }}"
+        type: "vitest-istanbul-coverage"
+        path: ${{ inputs.coverage_result_path }}
+outputs:
+  test:
+    description: Test metadata
+    value: ${{ steps.test-report-extractor.outputs.data }}
+  coverage:
+    description: Coverage metadata
+    value: ${{ steps.coverage-report-extractor.outputs.data }}
