@@ -29,6 +29,7 @@ runs:
   using: "composite"
   steps:
     - name: Publish Test Result
+      shell: bash
       id: test-report
       run: ${{ github.action_path }}/scripts/ci/publish_cloudflare.sh
       env:
@@ -38,6 +39,7 @@ runs:
         DIRECTORY: ${{ inputs.test_report_path }}
 
     - name: Publish Coverage Result
+      shell: bash
       id: coverage-report
       run: ${{ github.action_path }}/scripts/ci/publish_cloudflare.sh
       env:
