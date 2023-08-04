@@ -7,7 +7,7 @@
 
 set -eou pipefail
 
-wrangler pages publish "${DIRECTORY}" --project-name="${PROJECT_NAME}" --commit-dirty=true
+wrangler pages deploy "${DIRECTORY}" --project-name="${PROJECT_NAME}" --commit-dirty=true
 
 resp=$(curl "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${PROJECT_NAME}/deployments" \
   -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}")
