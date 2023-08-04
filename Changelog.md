@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/tr8team/actions.gotrade-test-data/compare/v1.1.0...v1.1.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* use cloudflare deploy ([e76f3f2](https://github.com/tr8team/actions.gotrade-test-data/commit/e76f3f2f38d7fdd31dfce9cfc53cef6b379d80e0))
+
 ## [1.1.0](https://github.com/tr8team/actions.gotrade-test-data/compare/v1.0.1...v1.1.0) (2023-08-04)
 
 
