@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/tr8team/actions.gotrade-test-data/compare/v1.0.0...v1.0.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* missing shell in action ([ef12666](https://github.com/tr8team/actions.gotrade-test-data/commit/ef12666b23fd1f34f8b38270ff217e3cfeeea9bb))
+
 ## 1.0.0 (2023-08-04)
 
 
