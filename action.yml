@@ -50,7 +50,7 @@ runs:
 
     - name: Test Result Extractor
       id: test-report-extractor
-      uses: tr8team/test-sources@v1.1.0
+      uses: tr8team/test-sources@v1.1.3
       with:
         name: "${{ inputs.name }} Test Results"
         url: "${{ steps.test-report.outputs.url }}"
@@ -59,7 +59,7 @@ runs:
 
     - name: Test Coverage Extractor
       id: coverage-report-extractor
-      uses: tr8team/test-sources@v1.1.0
+      uses: tr8team/test-sources@v1.1.3
       with:
         name: "${{ inputs.name }} Test Coverage"
         url: "${{ steps.coverage-report.outputs.url }}"
